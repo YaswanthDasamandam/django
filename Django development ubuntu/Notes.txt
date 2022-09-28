@@ -1,0 +1,71 @@
+sudo apt install python3-pip
+pip install django
+django-admin startproject <project name>
+do not name python library names
+
+checking if django is working or not
+python manage.py runserver --> for running server
+
+python manage.py runserver <portnumber> 
+python manage.py startapp  <app name> here i used main as name
+
+go to mysite/settings
+
+and update in installed apps to 
+add   'main.apps.MainConfig'
+
+run python3 manage.py migrate  to do necessary changes
+
+to tell the app that we made models for it to make changes we have to run
+python3 manage.py makemigrations main
+doing this we migrated but if we want to apply we should run "migrate" command
+
+How We can add stuff to data base 
+
+python3 manage.py shell
+
+from main.models import Item,ToDoList 
+>>> t = ToDoList(name = "yaswanth \'s List")
+>>> t.save()
+
+<int:id> observe it and pass it to index  as id
+path("<int:id>",views.index,name="index"),
+
+in views.py i forgot name= "index" instead i used index so i got error 
+
+>>> from main.models import Item,ToDoList
+>>> t = ToDoList.objects
+>>> t.all()
+<QuerySet [<ToDoList: yaswanth 's List>]>
+>>> t.filter()
+<QuerySet [<ToDoList: yaswanth 's List>]>
+>>> t.filter(name__startswith="yaswanth")
+<QuerySet [<ToDoList: yaswanth 's List>]>
+>>> t.filter(name__startswith="h")
+<QuerySet []>
+>>> t1 = ToDoList(name="First list")
+>>> t1.save()
+>>> t2 = ToDoList(name="Second list")
+>>> t2.save()
+>>> quit()
+
+for intracting with database 
+
+For creating admin user  {"python3 manage.py createsuperuser"}
+
+For showing database in site we need to register in admin.py in main with models created
+
+admin.site.register(ToDoList)
+if you are adding any database dont forget to register in admin.py so we can see it in website
+
+template inheritance 
+{% extends 'main/base.html' %}
+
+{{name}} using variable name
+
+we can block content in base html file using 
+
+{% block <name> %} ---> here content is the name of the block
+default value
+{% endblock%}
+

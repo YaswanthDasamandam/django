@@ -1,0 +1,2 @@
+when using sockets dont forget to connect to server
+ created browser in sockets and server in sockets
